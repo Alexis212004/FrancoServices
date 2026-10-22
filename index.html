@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franco's Services — Property Maintenance | Anchorage, AK</title>
+  <meta name="description" content="Professional window cleaning, snow removal, gutter cleaning & more in Anchorage, AK. Locally owned. Free quotes — call or text 916-228-1101." />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/svg+xml" href="Assets/Logo.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand:     { DEFAULT: '#0e3b70', light: '#1d4ed8' },
+            ice:       { DEFAULT: '#2563eb', bright: '#0ea5e9' },
+            dark:      '#0f172a',
+            snow:      '#f0f7ff',
+          },
+          fontFamily: {
+            heading: ['Montserrat', 'sans-serif'],
+            body:    ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    html { font-family: 'Inter', sans-serif; }
+    .font-heading { font-family: 'Montserrat', sans-serif; }
+
+    /* Mountain silhouette SVG used as repeatable background */
+    .mountain-bg {
+      background-image:
+        linear-gradient(180deg, rgba(14,59,112,.92) 0%, rgba(14,59,112,.80) 100%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='.06' d='M0,224L60,213.3C120,203,240,181,360,186.7C480,192,600,224,720,218.7C840,213,960,171,1080,160C1200,149,1320,171,1380,181.3L1440,192L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z'/%3E%3C/svg%3E");
+      background-size: cover;
+      background-position: bottom;
+    }
+
+    /* Hero layered mountain vectors */
+    .hero-bg {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0e3b70 0%, #1d4ed8 40%, #0ea5e9 100%);
+    }
+    .hero-bg::before,
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      pointer-events: none;
+    }
+    .hero-bg::before {
+      height: 45%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='.07' d='M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,165.3C672,171,768,213,864,218.7C960,224,1056,192,1152,170.7C1248,149,1344,139,1392,133.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom / cover;
+    }
+    .hero-bg::after {
+      height: 35%;
+      background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23ffffff' fill-opacity='.04' d='M0,256L80,234.7C160,213,320,171,480,176C640,181,800,235,960,245.3C1120,256,1280,224,1360,208L1440,192L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z'/%3E%3C/svg%3E") no-repeat bottom / cover;
+    }
+
+    /* Snowflake floating animation */
+    @keyframes drift {
+      0%   { transform: translateY(-10%) translateX(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 1; }
+      90%  { opacity: 1; }
+      100% { transform: translateY(110%) translateX(40px) rotate(360deg); opacity: 0; }
+    }
+    .snowflake {
+      position: absolute;
+      color: rgba(255,255,255,.15);
+      animation: drift linear infinite;
+      pointer-events: none;
+    }
+
+    /* FAQ animation */
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .35s ease; }
+    .faq-answer.open { max-height: 500px; }
+
+    /* Smooth card hover */
+    .service-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(14,59,112,.12); }
+  </style>
+</head>
+<body class="bg-white text-dark font-body antialiased">
+
+  <!-- ═══════════════════════════════════════
+       1. TOP UTILITY BAR
+  ════════════════════════════════════════ -->
+  <div class="bg-dark text-white text-xs sm:text-sm py-2 px-4 tracking-wide">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-1.5 sm:gap-4 text-center">
+      <div class="flex flex-wrap items-center justify-center gap-1.5 sm:gap-2">
+        <span class="opacity-90">Free, no-obligation quotes —</span>
+        <a href="tel:9162281101" class="font-semibold underline decoration-ice-bright hover:text-ice-bright transition">call or text 916-228-1101</a>
+      </div>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="mailto:Francoservicesak@gmail.com" class="flex items-center gap-1.5 hover:text-ice-bright transition opacity-90 hover:opacity-100">
+          <i class="fa-solid fa-envelope text-sky-400"></i>
+          <span>Francoservicesak@gmail.com</span>
+        </a>
+        <div class="flex items-center gap-3 pl-2 border-l border-white/20">
+          <a href="https://www.instagram.com/Francoservices.ak" target="_blank" rel="noopener" class="text-white/80 hover:text-white hover:scale-110 transition" aria-label="Instagram">
+            <i class="fa-brands fa-instagram text-sm"></i>
+          </a>
+          <a href="https://www.tiktok.com/@francoservices.ak" target="_blank" rel="noopener" class="text-white/80 hover:text-white hover:scale-110 transition" aria-label="TikTok">
+            <i class="fa-brands fa-tiktok text-sm"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       2. STICKY HEADER / NAV
+  ════════════════════════════════════════ -->
+  <header id="site-header" class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm transition-shadow">
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16 md:h-[72px]">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 group">
+        <img src="Assets/Logo.svg" alt="Franco's Services" class="h-16 md:h-24 w-auto object-contain mt-3.5" />
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="hidden lg:flex items-center gap-8 text-sm font-semibold text-dark/80">
+        <a href="#home"     class="hover:text-brand transition">Home</a>
+        <a href="#about"    class="hover:text-brand transition">About</a>
+        <a href="#services" class="hover:text-brand transition">Services</a>
+        <a href="#faq"      class="hover:text-brand transition">FAQ</a>
+        <a href="#contact"  class="hover:text-brand transition">Contact</a>
+      </nav>
+
+      <!-- CTA + Burger -->
+      <div class="flex items-center gap-3">
+        <a href="#quote" class="hidden sm:inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white font-heading font-bold text-sm px-5 py-2.5 rounded-lg shadow-md hover:shadow-lg transition">
+          <i class="fa-solid fa-envelope-open-text text-xs"></i> Get a Free Quote
+        </a>
+        <button id="burger-btn" class="lg:hidden w-10 h-10 flex items-center justify-center rounded-lg text-brand hover:bg-snow transition" aria-label="Open menu">
+          <i class="fa-solid fa-bars text-xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden lg:hidden bg-white border-t">
+      <nav class="flex flex-col px-6 py-4 gap-3 text-sm font-semibold text-dark/80">
+        <a href="#home"     class="py-2 hover:text-brand transition" onclick="closeMobile()">Home</a>
+        <a href="#about"    class="py-2 hover:text-brand transition" onclick="closeMobile()">About</a>
+        <a href="#services" class="py-2 hover:text-brand transition" onclick="closeMobile()">Services</a>
+        <a href="#faq"      class="py-2 hover:text-brand transition" onclick="closeMobile()">FAQ</a>
+        <a href="#contact"  class="py-2 hover:text-brand transition" onclick="closeMobile()">Contact</a>
+        <a href="#quote" class="mt-2 flex items-center justify-center gap-2 bg-brand text-white font-heading font-bold text-sm px-5 py-3 rounded-lg" onclick="closeMobile()">
+          <i class="fa-solid fa-envelope-open-text text-xs"></i> Get a Free Quote
+        </a>
+        <div class="pt-3 mt-2 border-t border-gray-100 flex flex-col gap-2">
+          <a href="mailto:Francoservicesak@gmail.com" class="text-xs text-dark/70 hover:text-brand flex items-center gap-2 py-1">
+            <i class="fa-solid fa-envelope text-ice"></i> Francoservicesak@gmail.com
+          </a>
+          <div class="flex items-center gap-3 pt-1">
+            <a href="https://www.instagram.com/Francoservices.ak" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-snow border border-brand/10 text-dark flex items-center justify-center hover:bg-pink-600 hover:text-white transition" aria-label="Instagram">
+              <i class="fa-brands fa-instagram text-sm"></i>
+            </a>
+            <a href="https://www.tiktok.com/@francoservices.ak" target="_blank" rel="noopener" class="w-8 h-8 rounded-lg bg-snow border border-brand/10 text-dark flex items-center justify-center hover:bg-black hover:text-white transition" aria-label="TikTok">
+              <i class="fa-brands fa-tiktok text-sm"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       3. HERO SECTION
+  ════════════════════════════════════════ -->
+  <section id="home" class="hero-bg relative min-h-[92vh] md:min-h-[88vh] flex items-center">
+    <!-- Decorative snowflakes -->
+    <span class="snowflake text-3xl" style="left:5%;animation-duration:8s;animation-delay:0s"><i class="fa-regular fa-snowflake"></i></span>
+    <span class="snowflake text-xl" style="left:25%;animation-duration:12s;animation-delay:2s"><i class="fa-regular fa-snowflake"></i></span>
+    <span class="snowflake text-2xl" style="left:50%;animation-duration:10s;animation-delay:4s"><i class="fa-regular fa-snowflake"></i></span>
+    <span class="snowflake text-lg" style="left:75%;animation-duration:14s;animation-delay:1s"><i class="fa-regular fa-snowflake"></i></span>
+    <span class="snowflake text-2xl" style="left:90%;animation-duration:9s;animation-delay:3s"><i class="fa-regular fa-snowflake"></i></span>
+
+    <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28 text-center lg:text-left">
+      <div class="max-w-2xl mx-auto lg:mx-0">
+        <!-- Discount pill -->
+        <span class="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/25 text-white font-heading font-bold text-xs sm:text-sm px-4 py-1.5 rounded-full mb-6 tracking-wide uppercase">
+          <i class="fa-solid fa-tag"></i> 15% OFF YOUR FIRST SERVICE
+        </span>
+
+        <h1 class="font-heading font-black text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight">
+          A crew that <br class="hidden sm:block" />knows <span class="text-sky-300">Alaska weather</span>
+        </h1>
+
+        <p class="mt-5 text-white/80 text-base sm:text-lg md:text-xl max-w-xl leading-relaxed">
+          Professional window cleaning, snow removal, gutter maintenance &amp; more for homes and businesses across Anchorage.
+        </p>
+
+        <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+          <a href="#quote" class="inline-flex items-center justify-center gap-2 bg-white text-brand font-heading font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:bg-snow transition">
+            <i class="fa-solid fa-calendar-check"></i> Book Now
+          </a>
+          <a href="https://wa.me/19162281101" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 border-2 border-white/40 text-white font-heading font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl hover:bg-white/10 transition">
+            <i class="fa-brands fa-whatsapp text-lg"></i> Message for Free Quote
+          </a>
+        </div>
+
+        <!-- Trust badges -->
+        <div class="mt-10 flex flex-wrap gap-4 sm:gap-6 justify-center lg:justify-start text-white/70 text-xs sm:text-sm font-medium">
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-shield-halved text-sky-300"></i> Fully Insured</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-star text-sky-300"></i> 5-Star Rated</span>
+          <span class="flex items-center gap-1.5"><i class="fa-solid fa-location-dot text-sky-300"></i> Anchorage, AK</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       4. SERVICES GRID
+  ════════════════════════════════════════ -->
+  <section id="services" class="bg-snow py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <!-- Section Header -->
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="inline-block font-heading font-bold text-ice text-xs uppercase tracking-[.2em] mb-3">What We Do</span>
+        <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-dark tracking-tight">OUR SERVICES</h2>
+        <p class="mt-4 text-dark/60 text-base sm:text-lg">Reliable, professional property maintenance built for Alaska's toughest conditions.</p>
+      </div>
+
+      <!-- Cards -->
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <!-- Window Cleaning -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-brand text-white font-heading font-bold text-[10px] uppercase tracking-wider px-3 py-1 rounded-bl-xl">Popular</div>
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-spray-can-sparkles"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Window Cleaning</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Interior &amp; exterior glass</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Screen &amp; track cleaning</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Hard water stain removal</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Streak-free guarantee</li>
+          </ul>
+        </div>
+
+        <!-- Snow Removal -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5">
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-snowplow"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Snow Removal</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Driveways &amp; walkways</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Roof snow clearing</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> De-icing &amp; salting</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Same-day emergency service</li>
+          </ul>
+        </div>
+
+        <!-- Gutter Cleaning -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5">
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-house-chimney"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Gutter Cleaning</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Full debris removal</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Downspout flush</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Ice dam prevention</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Before &amp; after photos</li>
+          </ul>
+        </div>
+
+        <!-- Pressure Washing -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5">
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-water"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Pressure Washing</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Siding &amp; deck wash</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Concrete &amp; driveway</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Fence restoration</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Eco-friendly solutions</li>
+          </ul>
+        </div>
+
+        <!-- Moss Treatment -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5">
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-seedling"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Moss Treatment</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Roof moss removal</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Preventative zinc strips</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Sidewalk &amp; patio moss</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Safe for landscaping</li>
+          </ul>
+        </div>
+
+        <!-- Seasonal Maintenance -->
+        <div class="service-card bg-white rounded-2xl p-7 md:p-8 border border-brand/5 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-ice-bright text-white font-heading font-bold text-[10px] uppercase tracking-wider px-3 py-1 rounded-bl-xl">Bundle &amp; Save</div>
+          <div class="w-14 h-14 rounded-xl bg-ice/10 text-ice flex items-center justify-center text-2xl mb-5">
+            <i class="fa-solid fa-calendar-days"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg md:text-xl text-dark uppercase tracking-wide">Seasonal Packages</h3>
+          <ul class="mt-4 space-y-2.5 text-sm text-dark/70">
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Spring &amp; fall cleanups</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Multi-service bundles</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Recurring schedules</li>
+            <li class="flex items-start gap-2"><i class="fa-solid fa-circle-check text-ice mt-0.5"></i> Priority booking</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       5. TRUST / FEATURES
+  ════════════════════════════════════════ -->
+  <section id="about" class="bg-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="inline-block font-heading font-bold text-ice text-xs uppercase tracking-[.2em] mb-3">Why Franco's</span>
+        <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-dark tracking-tight">WHY CHOOSE US</h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
+        <!-- Card 1 -->
+        <div class="bg-snow rounded-2xl p-8 text-center border border-brand/5 hover:border-ice/20 transition">
+          <div class="w-16 h-16 rounded-2xl bg-brand/10 text-brand flex items-center justify-center text-3xl mx-auto mb-5">
+            <i class="fa-solid fa-house-flag"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg text-dark uppercase">Locally Owned &amp; Operated</h3>
+          <p class="mt-3 text-dark/60 text-sm leading-relaxed">Born and raised in Anchorage. We understand Alaska's unique property challenges because we live them every day.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="bg-snow rounded-2xl p-8 text-center border border-brand/5 hover:border-ice/20 transition">
+          <div class="w-16 h-16 rounded-2xl bg-brand/10 text-brand flex items-center justify-center text-3xl mx-auto mb-5">
+            <i class="fa-solid fa-file-invoice-dollar"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg text-dark uppercase">Transparent Pricing</h3>
+          <p class="mt-3 text-dark/60 text-sm leading-relaxed">No hidden fees, no surprise charges. You'll know exactly what you're paying before we start any work.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="bg-snow rounded-2xl p-8 text-center border border-brand/5 hover:border-ice/20 transition">
+          <div class="w-16 h-16 rounded-2xl bg-brand/10 text-brand flex items-center justify-center text-3xl mx-auto mb-5">
+            <i class="fa-solid fa-medal"></i>
+          </div>
+          <h3 class="font-heading font-extrabold text-lg text-dark uppercase">Quality Results</h3>
+          <p class="mt-3 text-dark/60 text-sm leading-relaxed">Every job comes with our satisfaction guarantee. If you're not happy, we'll make it right — no questions asked.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       6. WHO WE SERVE (BADGES / PILLS)
+  ════════════════════════════════════════ -->
+  <section class="bg-snow py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <span class="inline-block font-heading font-bold text-ice text-xs uppercase tracking-[.2em] mb-3">Who We Serve</span>
+      <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-dark tracking-tight mb-10">YOUR PROPERTY, OUR PRIORITY</h2>
+
+      <div class="flex flex-wrap justify-center gap-3 md:gap-4 max-w-3xl mx-auto">
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-house text-ice"></i> Single-Family Homes
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-road text-ice"></i> Driveways
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-person-walking text-ice"></i> Walkways
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-store text-ice"></i> Storefronts
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-building text-ice"></i> HOAs &amp; Condos
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-warehouse text-ice"></i> Commercial Buildings
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-building-columns text-ice"></i> Office Complexes
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-church text-ice"></i> Churches &amp; Schools
+        </span>
+        <span class="inline-flex items-center gap-2 bg-white border border-brand/10 text-dark font-heading font-bold text-xs sm:text-sm px-5 py-2.5 rounded-full shadow-sm hover:border-ice/40 hover:shadow-md transition cursor-default">
+          <i class="fa-solid fa-people-roof text-ice"></i> Multi-Family Residences
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       7. CTA BANNER
+  ════════════════════════════════════════ -->
+  <section class="mountain-bg relative py-16 md:py-20">
+    <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h2 class="font-heading font-black text-white text-3xl sm:text-4xl md:text-5xl tracking-tight">READY TO GET STARTED?</h2>
+      <p class="mt-4 text-white/80 text-base sm:text-lg max-w-xl mx-auto">Whether it's a one-time cleanup or seasonal contract, we've got you covered. Reach out today for a free, no-pressure estimate.</p>
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+        <a href="tel:9162281101" class="inline-flex items-center justify-center gap-2 bg-white text-brand font-heading font-extrabold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:bg-snow transition">
+          <i class="fa-solid fa-phone"></i> Call 916-228-1101
+        </a>
+        <a href="https://wa.me/19162281101" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 bg-green-500 hover:bg-green-600 text-white font-heading font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition">
+          <i class="fa-brands fa-whatsapp text-lg"></i> WhatsApp Us
+        </a>
+        <a href="mailto:Francoservicesak@gmail.com" class="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/30 font-heading font-bold text-sm sm:text-base px-7 py-3.5 rounded-xl shadow-lg hover:shadow-xl transition">
+          <i class="fa-solid fa-envelope"></i> Email Us
+        </a>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ═══════════════════════════════════════
+       9. FAQ ACCORDION
+  ════════════════════════════════════════ -->
+  <section id="faq" class="bg-snow py-20 md:py-28">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-14">
+        <span class="inline-block font-heading font-bold text-ice text-xs uppercase tracking-[.2em] mb-3">Support</span>
+        <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-dark tracking-tight">FREQUENTLY ASKED</h2>
+      </div>
+
+      <div class="space-y-3" id="faq-container">
+        <!-- Q1 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">What areas in Anchorage do you serve?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">We serve all of Anchorage and surrounding areas including Eagle River, Wasilla, Palmer, and the Mat-Su Valley. Contact us if you're unsure — we'll let you know if we can reach you!</p>
+          </div>
+        </div>
+
+        <!-- Q2 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">Do you offer free estimates?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">Yes! Every quote is 100% free with no obligation. Call, text, or fill out our form, and we'll typically get back to you within a few hours.</p>
+          </div>
+        </div>
+
+        <!-- Q3 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">Are you insured?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">Absolutely. Franco's Services is fully insured for your protection and peace of mind. We carry general liability insurance and can provide proof upon request.</p>
+          </div>
+        </div>
+
+        <!-- Q4 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">How do I schedule a service?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">You can call or text us at 916-228-1101, message us on WhatsApp, or fill out the quote form on this page. We'll confirm your appointment within 24 hours.</p>
+          </div>
+        </div>
+
+        <!-- Q5 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">What if the weather delays my service?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">Alaska weather is unpredictable — we get it! If conditions make it unsafe or impractical, we'll reschedule at the next available time at no extra cost to you.</p>
+          </div>
+        </div>
+
+        <!-- Q6 -->
+        <div class="faq-item bg-white rounded-xl border border-brand/5 overflow-hidden">
+          <button class="faq-toggle w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false">
+            <span class="font-heading font-bold text-sm sm:text-base text-dark pr-4">Can I bundle multiple services for a discount?</span>
+            <i class="fa-solid fa-chevron-down text-ice text-sm transition-transform duration-300"></i>
+          </button>
+          <div class="faq-answer px-6">
+            <p class="pb-5 text-sm text-dark/65 leading-relaxed">Yes! We offer seasonal packages and multi-service bundles at discounted rates. Ask us about combining window cleaning, gutter cleaning, and pressure washing for the best value.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       10. QUOTE FORM
+  ════════════════════════════════════════ -->
+  <section id="quote" class="bg-white py-20 md:py-28">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+          <span class="inline-block font-heading font-bold text-ice text-xs uppercase tracking-[.2em] mb-3">Get Started</span>
+          <h2 class="font-heading font-black text-3xl sm:text-4xl md:text-5xl text-dark tracking-tight">REQUEST A FREE QUOTE</h2>
+          <p class="mt-4 text-dark/60 text-base">Fill out the form below and we'll get back to you within a few hours.</p>
+        </div>
+
+        <form id="quote-form" class="bg-snow rounded-2xl p-6 sm:p-8 md:p-10 border border-brand/5 shadow-sm" onsubmit="handleFormSubmit(event)">
+          <div class="grid sm:grid-cols-2 gap-5">
+            <!-- Name -->
+            <div>
+              <label for="q-name" class="block text-xs font-heading font-bold text-dark/70 uppercase tracking-wider mb-1.5">Full Name *</label>
+              <input type="text" id="q-name" name="name" required placeholder="John Doe"
+                class="w-full px-4 py-3 rounded-lg border border-brand/10 bg-white text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:ring-2 focus:ring-ice/40 focus:border-ice transition" />
+            </div>
+            <!-- Phone / Email -->
+            <div>
+              <label for="q-contact" class="block text-xs font-heading font-bold text-dark/70 uppercase tracking-wider mb-1.5">Phone or Email *</label>
+              <input type="text" id="q-contact" name="contact" required placeholder="(907) 555-0123"
+                class="w-full px-4 py-3 rounded-lg border border-brand/10 bg-white text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:ring-2 focus:ring-ice/40 focus:border-ice transition" />
+            </div>
+          </div>
+
+          <!-- Service Needed -->
+          <div class="mt-5">
+            <label for="q-service" class="block text-xs font-heading font-bold text-dark/70 uppercase tracking-wider mb-1.5">Service Needed *</label>
+            <select id="q-service" name="service" required
+              class="w-full px-4 py-3 rounded-lg border border-brand/10 bg-white text-sm text-dark focus:outline-none focus:ring-2 focus:ring-ice/40 focus:border-ice transition appearance-none"
+              style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%230e3b70' d='M6 8.825a.5.5 0 0 1-.354-.146L1.646 4.68a.5.5 0 1 1 .708-.708L6 7.618l3.646-3.647a.5.5 0 1 1 .708.708L6.354 8.68A.5.5 0 0 1 6 8.825z'/%3E%3C/svg%3E&quot;);background-repeat:no-repeat;background-position:right 1rem center;">
+              <option value="" disabled selected>Select a service…</option>
+              <option value="window-cleaning">Window Cleaning</option>
+              <option value="snow-removal">Snow Removal</option>
+              <option value="gutter-cleaning">Gutter Cleaning</option>
+              <option value="pressure-washing">Pressure Washing</option>
+              <option value="moss-treatment">Moss Treatment</option>
+              <option value="seasonal-package">Seasonal Package</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+
+          <!-- Message -->
+          <div class="mt-5">
+            <label for="q-message" class="block text-xs font-heading font-bold text-dark/70 uppercase tracking-wider mb-1.5">Message (optional)</label>
+            <textarea id="q-message" name="message" rows="4" placeholder="Tell us about your property or any specific needs…"
+              class="w-full px-4 py-3 rounded-lg border border-brand/10 bg-white text-sm text-dark placeholder:text-dark/30 focus:outline-none focus:ring-2 focus:ring-ice/40 focus:border-ice transition resize-none"></textarea>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" id="form-submit-btn"
+            class="mt-6 w-full flex items-center justify-center gap-2 bg-brand hover:bg-brand-light text-white font-heading font-extrabold text-sm sm:text-base px-7 py-4 rounded-xl shadow-md hover:shadow-lg transition">
+            <i class="fa-solid fa-paper-plane"></i> Send My Free Quote Request
+          </button>
+
+          <!-- Success message (hidden by default) -->
+          <div id="form-success" class="hidden mt-5 bg-green-50 border border-green-200 text-green-800 rounded-xl px-5 py-4 text-sm text-center font-medium">
+            <i class="fa-solid fa-circle-check mr-1"></i> Thank you! We'll get back to you shortly.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       11. FOOTER
+  ════════════════════════════════════════ -->
+  <footer id="contact" class="bg-dark text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+        <!-- Col 1 – Brand -->
+        <div>
+          <p class="text-white/50 text-sm leading-relaxed">Professional property maintenance trusted by homeowners and businesses across Anchorage, Alaska.</p>
+          <div class="mt-5 flex items-center gap-3">
+            <a href="https://www.instagram.com/Francoservices.ak" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-pink-600 text-white flex items-center justify-center transition" aria-label="Instagram"><i class="fa-brands fa-instagram text-sm"></i></a>
+            <a href="https://www.tiktok.com/@francoservices.ak" target="_blank" rel="noopener" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-black hover:border hover:border-white/20 text-white flex items-center justify-center transition" aria-label="TikTok"><i class="fa-brands fa-tiktok text-sm"></i></a>
+            <a href="mailto:Francoservicesak@gmail.com" class="w-9 h-9 rounded-lg bg-white/10 hover:bg-ice text-white flex items-center justify-center transition" aria-label="Email"><i class="fa-solid fa-envelope text-sm"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2 – Services -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-white/80 mb-4">Services</h4>
+          <ul class="space-y-2 text-sm text-white/50">
+            <li><a href="#services" class="hover:text-white transition">Window Cleaning</a></li>
+            <li><a href="#services" class="hover:text-white transition">Snow Removal</a></li>
+            <li><a href="#services" class="hover:text-white transition">Gutter Cleaning</a></li>
+            <li><a href="#services" class="hover:text-white transition">Pressure Washing</a></li>
+            <li><a href="#services" class="hover:text-white transition">Moss Treatment</a></li>
+            <li><a href="#services" class="hover:text-white transition">Seasonal Packages</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3 – Quick Links -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-white/80 mb-4">Quick Links</h4>
+          <ul class="space-y-2 text-sm text-white/50">
+            <li><a href="#home"     class="hover:text-white transition">Home</a></li>
+            <li><a href="#about"    class="hover:text-white transition">About Us</a></li>
+            <li><a href="#faq"      class="hover:text-white transition">FAQ</a></li>
+            <li><a href="#quote"    class="hover:text-white transition">Get a Quote</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4 – Contact -->
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-white/80 mb-4">Contact Us</h4>
+          <ul class="space-y-3 text-sm text-white/50">
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-phone text-ice-bright mt-0.5"></i>
+              <a href="tel:9162281101" class="hover:text-white transition">916-228-1101</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-brands fa-whatsapp text-ice-bright mt-0.5"></i>
+              <a href="https://wa.me/19162281101" target="_blank" rel="noopener" class="hover:text-white transition">WhatsApp Us</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-envelope text-ice-bright mt-0.5"></i>
+              <a href="mailto:Francoservicesak@gmail.com" class="hover:text-white transition break-all">Francoservicesak@gmail.com</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-brands fa-instagram text-ice-bright mt-0.5"></i>
+              <a href="https://www.instagram.com/Francoservices.ak" target="_blank" rel="noopener" class="hover:text-white transition">@Francoservices.ak</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-brands fa-tiktok text-ice-bright mt-0.5"></i>
+              <a href="https://www.tiktok.com/@francoservices.ak" target="_blank" rel="noopener" class="hover:text-white transition">@francoservices.ak</a>
+            </li>
+            <li class="flex items-start gap-2.5">
+              <i class="fa-solid fa-location-dot text-ice-bright mt-0.5"></i>
+              <span>Anchorage, AK</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Bottom bar -->
+      <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/40">
+        <p>&copy; 2026 Franco's Services. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       VANILLA JS
+  ════════════════════════════════════════ -->
+  <script>
+    /* ---- Mobile Menu Toggle ---- */
+    const burgerBtn   = document.getElementById('burger-btn');
+    const mobileMenu  = document.getElementById('mobile-menu');
+    const burgerIcon  = burgerBtn.querySelector('i');
+
+    burgerBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden');
+      burgerIcon.classList.toggle('fa-bars', isOpen);
+      burgerIcon.classList.toggle('fa-xmark', !isOpen);
+    });
+
+    function closeMobile() {
+      mobileMenu.classList.add('hidden');
+      burgerIcon.classList.add('fa-bars');
+      burgerIcon.classList.remove('fa-xmark');
+    }
+
+    /* ---- Sticky Header Shadow on Scroll ---- */
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.classList.toggle('shadow-md', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ---- FAQ Accordion ---- */
+    document.querySelectorAll('.faq-toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer  = btn.nextElementSibling;
+        const chevron = btn.querySelector('i');
+        const isOpen  = answer.classList.contains('open');
+
+        // Close all others
+        document.querySelectorAll('.faq-answer.open').forEach(a => {
+          a.classList.remove('open');
+          a.previousElementSibling.querySelector('i').style.transform = '';
+          a.previousElementSibling.setAttribute('aria-expanded', 'false');
+        });
+
+        // Toggle current
+        if (!isOpen) {
+          answer.classList.add('open');
+          chevron.style.transform = 'rotate(180deg)';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    /* ---- Quote Form Handler ---- */
+/* ---- Quote Form Handler (Envío a WhatsApp) ---- */
+/* ---- Quote Form Handler (Versión limpia para WhatsApp) ---- */
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  // 1. Obtener valores
+  const name    = document.getElementById('q-name').value.trim();
+  const contact = document.getElementById('q-contact').value.trim();
+  const service = document.getElementById('q-service').options[document.getElementById('q-service').selectedIndex].text;
+  const message = document.getElementById('q-message').value.trim();
+
+  // 2. Armar el mensaje en texto plano sin emojis que se puedan romper
+  let text = `*NUEVA COTIZACIÓN DESDE LA WEB*\n\n`;
+  text += `*Cliente:* ${name}\n`;
+  text += `*Contacto:* ${contact}\n`;
+  text += `*Servicio:* ${service}\n`;
+  if (message) {
+    text += `*Detalles:* ${message}\n`;
+  }
+
+  // 3. Número de teléfono (con código de país sin +)
+  const phoneNumber = "19162281101";
+
+  // 4. Codificación segura
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(text)}`;
+  
+  // 5. Abrir WhatsApp
+  window.open(whatsappUrl, '_blank');
+
+  // 6. Resetear formulario
+  document.getElementById('quote-form').reset();
+}
+
+    /* ---- Smooth scroll offset for sticky header ---- */
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        const target = document.querySelector(targetId);
+        if (target) {
+          e.preventDefault();
+          const offset = header.offsetHeight + 16;
+          window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
